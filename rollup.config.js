@@ -5,7 +5,8 @@ import livereload from "rollup-plugin-livereload";
 import { terser } from "rollup-plugin-terser";
 import css from "rollup-plugin-css-only";
 import sveltePreprocess from "svelte-preprocess";
-import { preprocess } from "svelte/compiler";
+import alias from "@rollup/plugin-alias";
+import path from "path";
 
 const production = !process.env.ROLLUP_WATCH;
 
@@ -50,7 +51,14 @@ export default {
       },
       preprocess: sveltePreprocess(),
     }),
-
+    alias({
+      entries: [
+        {
+          find: "~",
+          replacement: path.resolve(__dirname, "src/"),
+        },
+      ],
+    }),
     // typescript(),
     // we'll extract any component CSS out into
     // a separate file - better for performance

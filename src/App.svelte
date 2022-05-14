@@ -1,8 +1,11 @@
 <script>
+  import Router from "svelte-spa-router";
+  import Header from "~/components/Header.svelte";
   let name = "";
 </script>
 
 <main>
+  <Header />
   <h1>Hello {name}!</h1>
   <div></div>
 
