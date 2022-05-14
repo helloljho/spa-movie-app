@@ -1,18 +1,13 @@
 <script>
   import Router from "svelte-spa-router";
   import Header from "~/components/Header.svelte";
+  import routes from "~/routes";
   let name = "";
 </script>
 
 <main>
   <Header />
-  <h1>Hello {name}!</h1>
-  <div></div>
-
-  <p>
-    Visit the <a href="https://svelte.dev/tutorial">Svelte tutorial</a> to learn
-    how to build Svelte apps.
-  </p>
+  <Router routes />
 </main>
 
 <style lang="scss">
