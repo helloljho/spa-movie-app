@@ -49,7 +49,11 @@ export default {
         // enable run-time checks when not in production
         dev: !production,
       },
-      preprocess: sveltePreprocess(),
+      preprocess: sveltePreprocess({
+        scss: {
+          prependData: '@import "./src/scss/main.scss";',
+        },
+      }),
     }),
     alias({
       entries: [
