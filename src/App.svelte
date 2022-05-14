@@ -5,10 +5,8 @@
   let name = "";
 </script>
 
-<main>
-  <Header />
-  <Router routes />
-</main>
+<Header />
+<Router routes="{routes}" />
 
 <style lang="scss">
   h1 {
