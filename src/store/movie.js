@@ -26,5 +26,4 @@ export async function searchMovies(payload) {
       moives.update(($movies) => unionBy($movies, Search, "imdbID"));
     }
   }
-  console.log(get(moives));
 }
