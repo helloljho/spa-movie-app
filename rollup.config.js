@@ -7,8 +7,12 @@ import css from "rollup-plugin-css-only";
 import sveltePreprocess from "svelte-preprocess";
 import alias from "@rollup/plugin-alias";
 import path from "path";
+import replace from "@rollup/plugin-replace";
+import dotenv from "dotenv";
 
 const production = !process.env.ROLLUP_WATCH;
+
+dotenv.config();
 
 function serve() {
   let server;
@@ -44,6 +48,10 @@ export default {
     file: "public/build/bundle.js",
   },
   plugins: [
+    replace({
+      OMDB_API_KEY: JSON.stringify(process.env.OMDB_API_KEY),
+    }),
+
     svelte({
       compilerOptions: {
         // enable run-time checks when not in production
