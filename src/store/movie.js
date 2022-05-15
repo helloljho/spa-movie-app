@@ -1,5 +1,6 @@
 import axios from "axios";
 import { writable, get } from "svelte/store";
+import { unionBy } from "lodash";
 
 export const moives = writable([]);
 
@@ -22,10 +23,7 @@ export async function searchMovies(payload) {
         `https://www.omdbapi.com/?apikey=${OMDB_API_KEY}&s=${title}&type=${type}&y=${year}&page=${page}`
       );
       const { Search } = res.data;
-      moives.update(($movies) => {
-        $movies.push(...Search);
-        return $movies;
-      });
+      moives.update(($movies) => unionBy($movies, Search, "imdbID"));
     }
   }
   console.log(get(moives));
