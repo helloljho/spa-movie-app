@@ -10,7 +10,7 @@
 <Header />
 {#key $location}
   <div in:fade>
-    <Router {routes} />
+    <Router {routes} restoreScrollState={true} />
   </div>
 {/key}
 
