@@ -37,7 +37,6 @@
   <div
     class="user"
     on:click={(event) => {
-      console.log(event);
       push("/about?name=Netlify&email=hellonetlify.com");
     }}
   >

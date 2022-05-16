@@ -51,8 +51,6 @@ export async function searchMovieWithId(id) {
   const res = await fetchMovie({ id });
 
   theMovie.set(res.data);
-  console.log(res);
-
   loading.set(false);
   message.set("");
 }
@@ -67,13 +65,11 @@ function fetchMovie(payload) {
   return new Promise(async (resolve, reject) => {
     try {
       const res = await axios.get(url);
-      console.log(res.data);
       if (res.data.Error) {
         reject(res.data.Error);
       }
       resolve(res);
     } catch (error) {
-      console.log(error.response.status);
       reject(error.message);
     }
   });
