@@ -1,10 +1,24 @@
 <script>
   import { link } from "svelte-spa-router";
+  import Loader from "~/components/Loader.svelte";
+
   export let movie;
-  console.log(movie.Poster);
+
+  let imageLoading = true;
+
+  if (movie.Poster === "N/A") {
+    imageLoading = false;
+  } else {
+    const img = document.createElement("img");
+    img.src = movie.Poster;
+    img.addEventListener("load", () => (imageLoading = false));
+  }
 </script>
 
 <a use:link href={`/movie/${movie.imdbID}`} class="movie">
+  {#if imageLoading}
+    <Loader scale="0.5" absolute fixed={false} />
+  {/if}
   <div class="poster" style="background-image: url({movie.Poster});">
     {#if movie.Poster === "N/A"}
       OMdbAPI<br />N/A

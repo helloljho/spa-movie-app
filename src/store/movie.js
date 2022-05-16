@@ -3,8 +3,11 @@ import { writable, get } from "svelte/store";
 import { unionBy } from "lodash";
 
 export const moives = writable([]);
+export const loading = writable(false);
 
 export async function searchMovies(payload) {
+  if (get(loading)) return;
+  loading.set(true);
   const { title, type, year, number } = payload;
 
   const res = await axios.get(
@@ -26,4 +29,5 @@ export async function searchMovies(payload) {
       moives.update(($movies) => unionBy($movies, Search, "imdbID"));
     }
   }
+  loading.set(false);
 }

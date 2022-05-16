@@ -1,9 +1,13 @@
 <script>
-  import { moives } from "~/store/movie";
+  import { moives, loading } from "~/store/movie";
   import MovieCard from "~/components/MovieCard.svelte";
+  import Loader from "~/components/Loader.svelte";
 </script>
 
 <div class="movie-list">
+  {#if $loading}
+    <Loader />
+  {/if}
   <div class="movies">
     {#each $moives as movie (movie.imdbID)}
       <MovieCard {movie} />
