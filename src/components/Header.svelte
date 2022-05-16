@@ -34,7 +34,13 @@
       {/each}
     </ul>
   </nav>
-  <div class="user">
+  <div
+    class="user"
+    on:click={(event) => {
+      console.log(event);
+      push("/about?name=Netlify&email=hellonetlify.com");
+    }}
+  >
     <img src="/assets/svelte.png" alt="User" />
   </div>
 </header>
